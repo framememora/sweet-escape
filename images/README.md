@@ -1,12 +1,12 @@
 # Photos
 
-Every slot currently holds a **stand-in photo from Wikimedia Commons** (see `CREDITS.md`). Replace each one with The Sweet Escape's own photo, using exactly the same filename, and delete that photo's line from `CREDITS.md`. If a file is missing, the site shows a labelled "Photo to add" slot.
+Every slot currently holds a **stand-in photo from Unsplash** (see `CREDITS.md`). Replace each one with The Sweet Escape's own photo, using exactly the same filename, and delete that photo's line from `CREDITS.md`.
 
-Square photos (around 1200×1200) work best for the menu. The hero works best tall (around 900×1100).
+Menu photos are portrait 4:5 (900×1125). The hero is tall (1400×2000) and the cake section photo is 1400×1750.
 
 | File | Where it shows | What to shoot |
 |---|---|---|
-| `hero.jpg` | Top of the page, under the foil | Your best close-up: a spread of desserts, shot from above |
+| `hero.jpg` | Full-screen photo at the top | Your best dark, close-up shot, tall (portrait) |
 | `truffles.jpg` | Menu | Truffles, a few cut open |
 | `fudge.jpg` | Menu | Fudge squares, stacked |
 | `brownie.jpg` | Menu | A brownie with its crackled top |

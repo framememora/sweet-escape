@@ -1,26 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!--
-THESIS: The shop is a wrapped bar of chocolate. The page is that wrapper, so the visitor unwraps it, reads the back, and takes it to the counter. It refuses the category default of a cream background, serif headings and a row of three cards.
-OWN-WORLD: Peacock-teal wrapper paper owns the surface. On it: engraved foil-gold line work, cocoa ink, oat-colored inner paper, sharp folds, a guilloche seal, and the menu as square bar segments set in a carved grid.
-STORY: Visitors see what's made here and that it's open till midnight, then message on WhatsApp or walk to a branch.
-FIRST VIEWPORT: The wordmark sits large and left on the teal. To its right, a foil panel peels back to show the hero photo. An "Open now" seal shows live status. The WhatsApp and directions buttons sit under the wordmark.
-FORM: Confectionery wrapper (own list #5), staged as a single bar read front to back. Seed aef117fc.
--->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Sweet Escape | Desserts in Kochi, open till midnight</title>
-<meta name="description" content="The Sweet Escape: truffles, fudge, brownies, gelato, mousse, waffles, tarts, pies and custom cakes. Thoppumpady and Fort Kochi, open 2 PM to midnight.">
-<meta name="theme-color" content="#0f4a45">
+<meta name="description" content="Truffles, gelato, brownies, mousse, waffles and celebration cakes, made in our kitchen in Kochi. Thoppumpady and Fort Kochi. Open till midnight.">
+<meta name="theme-color" content="#111110">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Sweet Escape, Kochi">
-<meta property="og:description" content="Desserts made in-house. Thoppumpady and Fort Kochi. Open till midnight.">
+<meta property="og:description" content="Desserts made in our kitchen in Kochi. Open till midnight.">
 <meta property="og:image" content="images/hero.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="images/hero.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
 {
@@ -48,253 +45,258 @@ FORM: Confectionery wrapper (own list #5), staged as a single bar read front to 
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="bar-top" id="top">
-  <a class="wordmark" href="#top" aria-label="The Sweet Escape, home">
-    <span class="wordmark-small">The</span> Sweet Escape
-  </a>
-  <nav class="nav" id="nav" aria-label="Main">
+<header class="top" data-top>
+  <a class="mark" href="#top" aria-label="The Sweet Escape, back to top">The Sweet Escape</a>
+  <nav class="top-links" aria-label="Main">
     <a href="#menu">Menu</a>
-    <a href="#made-to-order">Cakes &amp; hampers</a>
-    <a href="#visit">Visit</a>
-    <a class="nav-wa" data-wa="Hi Sweet Escape! I'd like to place an order." href="#">WhatsApp us</a>
+    <a href="#cakes">Cakes</a>
+    <a href="#visit">Visit us</a>
   </nav>
-  <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
-    <span class="nav-toggle-label">Menu</span>
-  </button>
+  <p class="status" data-status aria-live="polite">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span data-status-text>Open 2 PM to midnight</span>
+  </p>
+  <a class="btn btn-accent top-order" data-wa="Hi Sweet Escape! I'd like to place an order." href="#"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Order on WhatsApp</a>
 </header>
 
 <main id="main">
 
-  <!-- FRONT OF THE WRAPPER -->
-  <section class="front" aria-labelledby="hero-title">
-    <div class="front-copy">
-      <p class="status" data-status aria-live="polite">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span data-status-text>Open 2 PM to midnight</span>
-      </p>
-      <h1 id="hero-title" class="hero-title">
-        <span class="hero-the">The</span>
-        Sweet<br>Escape
-      </h1>
-      <p class="hero-sub">Truffles, gelato, brownies, mousse and celebration cakes, made in our kitchen in Kochi. Come by after dinner. We're open till midnight.</p>
-      <div class="actions">
-        <a class="btn btn-foil" data-wa="Hi Sweet Escape! I'd like to place an order." href="#">Order on WhatsApp</a>
-        <a class="btn btn-line" href="#visit">Find a branch</a>
-      </div>
+  <section class="hero" id="top" aria-labelledby="hero-title" data-hero>
+    <div class="hero-media photo" data-photo>
+      <img src="images/hero.jpg" alt="Warm chocolate sauce pouring over a small chocolate bundt cake" width="1400" height="2000" fetchpriority="high">
     </div>
-
-    <figure class="front-bar">
-      <div class="photo photo-hero" data-photo>
-        <img src="images/hero.jpg" alt="A spread of desserts from The Sweet Escape counter" width="900" height="1100" fetchpriority="high">
-        <span class="photo-missing">Hero photo: your best dessert close-up</span>
-      </div>
-      <div class="foil" aria-hidden="true"></div>
-      <div class="seal" aria-hidden="true">
-        <svg class="seal-rosette" viewBox="0 0 200 200" data-guilloche></svg>
-        <span class="seal-text">Thoppumpady<br><b>&amp;</b><br>Fort Kochi</span>
-      </div>
-    </figure>
-  </section>
-
-  <!-- INSIDE: THE BAR -->
-  <section class="inside" id="menu" aria-labelledby="menu-title">
-    <div class="inside-head">
-      <h2 id="menu-title" class="section-title">Break off a piece</h2>
-      <p class="lede">Everything on the counter, one square at a time. Prices change with the season, so ask us on WhatsApp or at the counter.</p>
-    </div>
-
-    <div class="filters" role="group" aria-label="Filter the menu">
-      <button class="filter is-on" data-filter="all" aria-pressed="true">Everything</button>
-      <button class="filter" data-filter="chocolate" aria-pressed="false">Chocolates &amp; fudge</button>
-      <button class="filter" data-filter="cakes" aria-pressed="false">Cakes</button>
-      <button class="filter" data-filter="cold" aria-pressed="false">Gelato &amp; mousse</button>
-      <button class="filter" data-filter="bakes" aria-pressed="false">Brownies &amp; waffles</button>
-      <button class="filter" data-filter="pastry" aria-pressed="false">Tarts &amp; pies</button>
-    </div>
-
-    <ul class="segments" data-segments>
-      <li class="segment" data-cat="chocolate">
-        <div class="photo" data-photo><img src="images/truffles.jpg" alt="Chocolate truffles" loading="lazy" width="600" height="600"><span class="photo-missing">Truffles</span></div>
-        <h3>Truffles</h3>
-        <p>Soft ganache centres, rolled and coated. Good in a box for someone you like.</p>
-      </li>
-      <li class="segment" data-cat="chocolate">
-        <div class="photo" data-photo><img src="images/fudge.jpg" alt="Squares of chocolate fudge" loading="lazy" width="600" height="600"><span class="photo-missing">Fudge</span></div>
-        <h3>Fudge</h3>
-        <p>Dense, slow-set squares that snap clean and melt slowly.</p>
-      </li>
-      <li class="segment" data-cat="bakes">
-        <div class="photo" data-photo><img src="images/brownie.jpg" alt="Chocolate brownies" loading="lazy" width="600" height="600"><span class="photo-missing">Brownies</span></div>
-        <h3>Brownies</h3>
-        <p>Crackled tops, fudgy middles. Ask what's in the tray today.</p>
-      </li>
-      <li class="segment" data-cat="cold">
-        <div class="photo" data-photo><img src="images/gelato.jpg" alt="Scoops of gelato" loading="lazy" width="600" height="600"><span class="photo-missing">Gelato</span></div>
-        <h3>Gelato</h3>
-        <p>Scooped to order from the cold counter. Flavours rotate.</p>
-      </li>
-      <li class="segment" data-cat="cold">
-        <div class="photo" data-photo><img src="images/mousse.jpg" alt="Chocolate mousse in a cup" loading="lazy" width="600" height="600"><span class="photo-missing">Chocolate mousse</span></div>
-        <h3>Chocolate mousse</h3>
-        <p>Airy, dark and properly chocolatey. Eat it with a small spoon.</p>
-      </li>
-      <li class="segment" data-cat="cakes">
-        <div class="photo" data-photo><img src="images/chocolate-cake.jpg" alt="A slice of chocolate cake" loading="lazy" width="600" height="600"><span class="photo-missing">Chocolate cake</span></div>
-        <h3>Chocolate cake</h3>
-        <p>By the slice at the counter, or whole when you order ahead.</p>
-      </li>
-      <li class="segment" data-cat="cakes">
-        <div class="photo" data-photo><img src="images/chiffon.jpg" alt="Chiffon cake" loading="lazy" width="600" height="600"><span class="photo-missing">Chiffon cake</span></div>
-        <h3>Chiffon cake</h3>
-        <p>Tall, light and springy. The one to have with tea.</p>
-      </li>
-      <li class="segment" data-cat="bakes">
-        <div class="photo" data-photo><img src="images/waffle.jpg" alt="A waffle with chocolate sauce" loading="lazy" width="600" height="600"><span class="photo-missing">Waffles</span></div>
-        <h3>Waffles</h3>
-        <p>Made hot when you order, with sauce and toppings of your choice.</p>
-      </li>
-      <li class="segment" data-cat="pastry">
-        <div class="photo" data-photo><img src="images/tart.jpg" alt="Dessert tarts" loading="lazy" width="600" height="600"><span class="photo-missing">Tarts</span></div>
-        <h3>Tarts</h3>
-        <p>Short, buttery shells with a filling that changes with what's good.</p>
-      </li>
-      <li class="segment" data-cat="pastry">
-        <div class="photo" data-photo><img src="images/pie.jpg" alt="A slice of pie" loading="lazy" width="600" height="600"><span class="photo-missing">Pies</span></div>
-        <h3>Pies</h3>
-        <p>Baked deep and served by the slice.</p>
-      </li>
-      <li class="segment" data-cat="cakes">
-        <div class="photo" data-photo><img src="images/custom-cake.jpg" alt="A themed celebration cake" loading="lazy" width="600" height="600"><span class="photo-missing">Custom cakes</span></div>
-        <h3>Custom cakes</h3>
-        <p>Birthdays, anniversaries, themes. Tell us the idea and we'll build it.</p>
-      </li>
-      <li class="segment" data-cat="chocolate">
-        <div class="photo" data-photo><img src="images/hamper.jpg" alt="A dessert gift hamper" loading="lazy" width="600" height="600"><span class="photo-missing">Hampers</span></div>
-        <h3>Hampers</h3>
-        <p>A box of our best things, packed to give away.</p>
-      </li>
-    </ul>
-    <p class="empty" data-empty hidden>Nothing in this section today. Try another one.</p>
-  </section>
-
-  <!-- MADE TO ORDER -->
-  <section class="order" id="made-to-order" aria-labelledby="order-title">
-    <div class="order-copy">
-      <h2 id="order-title" class="section-title">Cakes &amp; hampers, made to order</h2>
-      <p>Celebration cakes in any theme, and hampers packed for gifting. Pick a few details below and we'll pick up the conversation on WhatsApp.</p>
-
-      <form class="slip" data-slip novalidate>
-        <fieldset>
-          <legend>What are you ordering?</legend>
-          <div class="choices">
-            <label><input type="radio" name="kind" value="a custom cake" checked><span>Custom cake</span></label>
-            <label><input type="radio" name="kind" value="a gift hamper"><span>Gift hamper</span></label>
-            <label><input type="radio" name="kind" value="a dessert box"><span>Dessert box</span></label>
-          </div>
-        </fieldset>
-        <div class="field-row">
-          <label class="field">
-            <span>Occasion</span>
-            <input type="text" name="occasion" placeholder="Birthday, anniversary…" autocomplete="off">
-          </label>
-          <label class="field">
-            <span>Needed on</span>
-            <input type="date" name="date" data-date>
-          </label>
-        </div>
-        <label class="field">
-          <span>Anything we should know</span>
-          <textarea name="notes" rows="3" placeholder="Theme, flavour, number of people, message on the cake"></textarea>
-        </label>
-        <p class="field-error" data-slip-error role="alert" hidden></p>
-        <button class="btn btn-foil" type="submit">Send on WhatsApp</button>
-        <p class="fine">This opens WhatsApp with your message filled in. Nothing is stored on this site.</p>
-      </form>
-    </div>
-    <figure class="order-photo">
-      <div class="photo photo-tall" data-photo>
-        <img src="images/custom-cake-2.jpg" alt="A celebration cake made to order" loading="lazy" width="700" height="900">
-        <span class="photo-missing">A custom cake you're proud of</span>
-      </div>
-    </figure>
-  </section>
-
-  <!-- OFFER (edit the text below when there's an offer running) -->
-  <section class="offer" aria-labelledby="offer-title">
-    <div class="ticket">
-      <h2 id="offer-title">Today at the counter</h2>
-      <p data-offer>Ask about today's offer when you visit. We post specials on our Instagram stories first.</p>
-      <a class="text-link" href="https://www.instagram.com/the_sweet_escapenew_/" target="_blank" rel="noopener">See our stories on Instagram</a>
-    </div>
-  </section>
-
-  <!-- REVIEWS: real ones only. Replace with customer quotes once you have permission. -->
-  <section class="word" aria-labelledby="word-title">
-    <div class="word-inner">
-      <h2 id="word-title" class="section-title">What people say</h2>
-      <div>
-        <p>We keep real customer reviews in the <em>Reviews</em> highlight on our Instagram, so you're reading the people who actually came in.</p>
-        <a class="btn btn-line btn-on-paper" href="https://www.instagram.com/the_sweet_escapenew_/" target="_blank" rel="noopener">Read reviews on Instagram</a>
+    <div class="hero-copy">
+      <h1 id="hero-title" class="hero-title"><span>The Sweet</span> <span>Escape</span></h1>
+      <p class="hero-sub">Desserts made in our kitchen in Kochi. Come by after dinner, we're open till midnight.</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" data-wa="Hi Sweet Escape! I'd like to place an order." href="#"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Order on WhatsApp</a>
+        <a class="btn btn-ghost" href="#visit">Visit us</a>
       </div>
     </div>
   </section>
 
-  <!-- BACK OF THE WRAPPER: VISIT -->
+  <section class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="menu-head">
+      <h2 id="menu-title" class="h2">What's on the counter</h2>
+      <p class="note">Swipe through each shelf. Prices change with the season, so ask us on WhatsApp.</p>
+    </div>
+
+    <nav class="chips" aria-label="Menu sections" data-chips>
+      <a class="chip is-on" href="#shelf-chocolate" data-chip="shelf-chocolate">Chocolates</a>
+      <a class="chip" href="#shelf-cakes" data-chip="shelf-cakes">Cakes</a>
+      <a class="chip" href="#shelf-cold" data-chip="shelf-cold">Gelato &amp; mousse</a>
+      <a class="chip" href="#shelf-bakes" data-chip="shelf-bakes">Brownies &amp; waffles</a>
+      <a class="chip" href="#shelf-pastry" data-chip="shelf-pastry">Tarts &amp; pies</a>
+    </nav>
+
+    <div class="shelf" id="shelf-chocolate" data-shelf>
+      <h3 class="shelf-title">Chocolates</h3>
+      <ul class="track">
+        <li class="item">
+          <div class="photo" data-photo><img src="images/truffles.jpg" alt="Cocoa-dusted chocolate truffles" loading="lazy" width="900" height="1125"></div>
+          <h4>Truffles</h4>
+          <p>Soft ganache centres, rolled and coated.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order truffles." href="#">Order this</a>
+        </li>
+        <li class="item">
+          <div class="photo" data-photo><img src="images/fudge.jpg" alt="Stacked squares of chocolate fudge" loading="lazy" width="900" height="1125"></div>
+          <h4>Fudge</h4>
+          <p>Dense squares that melt slowly.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order fudge." href="#">Order this</a>
+        </li>
+        <li class="item">
+          <div class="photo" data-photo><img src="images/hamper.jpg" alt="A box of assorted chocolates" loading="lazy" width="900" height="1125"></div>
+          <h4>Hampers</h4>
+          <p>A box of our best things, packed to give.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order a gift hamper." href="#">Order this</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="shelf" id="shelf-cakes" data-shelf>
+      <h3 class="shelf-title">Cakes</h3>
+      <ul class="track">
+        <li class="item">
+          <div class="photo" data-photo><img src="images/chocolate-cake.jpg" alt="A slice of layered chocolate cake" loading="lazy" width="900" height="1125"></div>
+          <h4>Chocolate cake</h4>
+          <p>By the slice, or whole when you order ahead.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order chocolate cake." href="#">Order this</a>
+        </li>
+        <li class="item">
+          <div class="photo" data-photo><img src="images/custom-cake.jpg" alt="A layered black forest cake topped with cherries" loading="lazy" width="900" height="1125"></div>
+          <h4>Custom cakes</h4>
+          <p>Birthdays, anniversaries, any theme you like.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order a custom cake." href="#">Order this</a>
+        </li>
+        <li class="item">
+          <div class="photo" data-photo><img src="images/chiffon.jpg" alt="A light chiffon cake with a slice cut out" loading="lazy" width="900" height="1125"></div>
+          <h4>Chiffon cake</h4>
+          <p>Tall, light and springy. Good with tea.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order chiffon cake." href="#">Order this</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="shelf" id="shelf-cold" data-shelf>
+      <h3 class="shelf-title">Gelato &amp; mousse</h3>
+      <ul class="track">
+        <li class="item">
+          <div class="photo" data-photo><img src="images/gelato.jpg" alt="Trays of gelato in a display counter" loading="lazy" width="900" height="1125"></div>
+          <h4>Gelato</h4>
+          <p>Scooped to order. Flavours rotate.</p>
+          <a class="order-link" data-wa="Hi! Which gelato flavours do you have today?" href="#">Order this</a>
+        </li>
+        <li class="item">
+          <div class="photo" data-photo><img src="images/mousse.jpg" alt="Chocolate mousse in a glass" loading="lazy" width="900" height="1125"></div>
+          <h4>Chocolate mousse</h4>
+          <p>Airy, dark and properly chocolatey.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order chocolate mousse." href="#">Order this</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="shelf" id="shelf-bakes" data-shelf>
+      <h3 class="shelf-title">Brownies &amp; waffles</h3>
+      <ul class="track">
+        <li class="item">
+          <div class="photo" data-photo><img src="images/brownie.jpg" alt="Stacked brownies with chocolate drizzle" loading="lazy" width="900" height="1125"></div>
+          <h4>Brownies</h4>
+          <p>Crackled tops, fudgy middles.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order brownies." href="#">Order this</a>
+        </li>
+        <li class="item">
+          <div class="photo" data-photo><img src="images/waffle.jpg" alt="Stacked waffles with chocolate sauce and cocoa" loading="lazy" width="900" height="1125"></div>
+          <h4>Waffles</h4>
+          <p>Made hot to order, with your choice of toppings.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order waffles." href="#">Order this</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="shelf" id="shelf-pastry" data-shelf>
+      <h3 class="shelf-title">Tarts &amp; pies</h3>
+      <ul class="track">
+        <li class="item">
+          <div class="photo" data-photo><img src="images/tart.jpg" alt="Small fruit tarts topped with berries and kiwi" loading="lazy" width="900" height="1125"></div>
+          <h4>Tarts</h4>
+          <p>Buttery shells, fillings that change with the season.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order tarts." href="#">Order this</a>
+        </li>
+        <li class="item">
+          <div class="photo" data-photo><img src="images/pie.jpg" alt="A slice of apple pie" loading="lazy" width="900" height="1125"></div>
+          <h4>Pies</h4>
+          <p>Baked deep and served by the slice.</p>
+          <a class="order-link" data-wa="Hi! I'd like to order pie." href="#">Order this</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cakes" id="cakes" aria-labelledby="cakes-title">
+    <div class="cakes-media photo" data-photo>
+      <img src="images/custom-cake-2.jpg" alt="A chocolate celebration cake with berries and a lit sparkler" loading="lazy" width="1400" height="1750">
+    </div>
+    <div class="cakes-copy">
+      <h2 id="cakes-title" class="h2">Cakes for the day that matters</h2>
+      <p>Tell us the occasion, the date and the idea. We'll make the cake or pack the hamper.</p>
+      <button class="btn btn-accent" type="button" data-open-sheet><i class="ph ph-cake" aria-hidden="true"></i>Plan a cake</button>
+    </div>
+  </section>
+
   <section class="visit" id="visit" aria-labelledby="visit-title">
-    <h2 id="visit-title" class="section-title">Two counters in Kochi</h2>
-    <div class="branches">
-      <article class="branch">
-        <h3>Thoppumpady</h3>
-        <p class="addr">Thoppumpady Halt, near Habibi, Kochi</p>
-        <dl class="hours">
-          <dt>Open</dt><dd>Every day, 2:00 PM to 12:00 AM</dd>
-          <dt>Right now</dt><dd data-branch-status="thoppumpady">Checking…</dd>
-        </dl>
-        <div class="map">
-          <iframe title="Map of The Sweet Escape, Thoppumpady" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=The+Sweet+Escape+Thoppumpady+Kochi&output=embed"></iframe>
-        </div>
-        <a class="btn btn-foil" href="https://www.google.com/maps/search/?api=1&query=The+Sweet+Escape+Thoppumpady+Kochi" target="_blank" rel="noopener">Directions to Thoppumpady</a>
-      </article>
-      <article class="branch">
-        <h3>Fort Kochi</h3>
-        <p class="addr">Fort Kochi</p>
-        <dl class="hours">
-          <dt>Open</dt><dd>Hours coming soon. Message us to check.</dd>
-        </dl>
-        <div class="map">
-          <iframe title="Map of The Sweet Escape, Fort Kochi" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=The+Sweet+Escape+Fort+Kochi&output=embed"></iframe>
-        </div>
-        <a class="btn btn-foil" href="https://www.google.com/maps/search/?api=1&query=The+Sweet+Escape+Fort+Kochi" target="_blank" rel="noopener">Directions to Fort Kochi</a>
-      </article>
+    <h2 id="visit-title" class="h2">Come by</h2>
+    <div class="tabs" role="tablist" aria-label="Branches">
+      <button class="tab is-on" role="tab" id="tab-thoppumpady" aria-selected="true" aria-controls="panel-thoppumpady" data-tab>Thoppumpady</button>
+      <button class="tab" role="tab" id="tab-fortkochi" aria-selected="false" aria-controls="panel-fortkochi" tabindex="-1" data-tab>Fort Kochi</button>
     </div>
+
+    <div class="panel" role="tabpanel" id="panel-thoppumpady" aria-labelledby="tab-thoppumpady">
+      <div class="panel-info">
+        <p class="panel-status" data-branch-status="thoppumpady">Checking…</p>
+        <p class="panel-line"><i class="ph ph-map-pin" aria-hidden="true"></i>Thoppumpady Halt, near Habibi, Kochi</p>
+        <p class="panel-line"><i class="ph ph-clock" aria-hidden="true"></i>Every day, 2:00 PM to 12:00 AM</p>
+        <a class="btn btn-accent" href="https://www.google.com/maps/search/?api=1&query=The+Sweet+Escape+Thoppumpady+Kochi" target="_blank" rel="noopener"><i class="ph ph-navigation-arrow" aria-hidden="true"></i>Get directions</a>
+      </div>
+      <div class="map">
+        <iframe title="Map of The Sweet Escape, Thoppumpady" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=The+Sweet+Escape+Thoppumpady+Kochi&output=embed"></iframe>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-fortkochi" aria-labelledby="tab-fortkochi" hidden>
+      <div class="panel-info">
+        <p class="panel-status">Hours coming soon</p>
+        <p class="panel-line"><i class="ph ph-map-pin" aria-hidden="true"></i>Fort Kochi</p>
+        <p class="panel-line"><i class="ph ph-clock" aria-hidden="true"></i>Message us to check today's hours</p>
+        <a class="btn btn-accent" href="https://www.google.com/maps/search/?api=1&query=The+Sweet+Escape+Fort+Kochi" target="_blank" rel="noopener"><i class="ph ph-navigation-arrow" aria-hidden="true"></i>Get directions</a>
+      </div>
+      <div class="map">
+        <iframe title="Map of The Sweet Escape, Fort Kochi" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          data-src="https://www.google.com/maps?q=The+Sweet+Escape+Fort+Kochi&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews: real ones only. They live in the Instagram "Reviews" highlight. -->
+  <section class="gram" aria-labelledby="gram-title">
+    <h2 id="gram-title" class="gram-title">Real reviews from real customers, on our Instagram.</h2>
+    <a class="gram-link" href="https://www.instagram.com/the_sweet_escapenew_/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i>@the_sweet_escapenew_</a>
   </section>
 </main>
 
-<footer class="back">
-  <div class="back-grid">
-    <div>
-      <p class="back-mark">The Sweet Escape</p>
-      <p>Desserts made in-house in Kochi.</p>
-    </div>
-    <div>
-      <h2 class="back-label">Contents</h2>
-      <p>Truffles, fudge, brownies, gelato, chocolate mousse, chocolate cake, chiffon cake, waffles, tarts, pies, custom cakes, hampers.</p>
-    </div>
-    <div>
-      <h2 class="back-label">Get in touch</h2>
-      <ul class="back-links">
-        <li><a data-wa="Hi Sweet Escape!" href="#">WhatsApp</a></li>
-        <li><a href="https://www.instagram.com/the_sweet_escapenew_/" target="_blank" rel="noopener">Instagram @the_sweet_escapenew_</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="back-legal">
-    <p>&copy; <span data-year>2026</span> The Sweet Escape, Kochi</p>
-    <p><a href="privacy.html">Privacy Policy</a> <span aria-hidden="true">·</span> <a href="terms.html">Terms of Service</a> <span aria-hidden="true">·</span> <a href="images/CREDITS.md">Photo credits</a></p>
-  </div>
+<footer class="foot">
+  <p class="foot-mark">The Sweet Escape</p>
+  <p class="foot-text">Desserts made in our kitchen in Kochi. Thoppumpady and Fort Kochi.</p>
+  <ul class="foot-links">
+    <li><a data-wa="Hi Sweet Escape!" href="#">WhatsApp</a></li>
+    <li><a href="https://www.instagram.com/the_sweet_escapenew_/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+    <li><a href="images/CREDITS.md">Photo credits</a></li>
+  </ul>
+  <p class="foot-copy">&copy; <span data-year>2026</span> The Sweet Escape, Kochi</p>
 </footer>
+
+<!-- Phone action bar -->
+<nav class="dock" aria-label="Quick actions">
+  <a class="btn btn-accent" data-wa="Hi Sweet Escape! I'd like to place an order." href="#"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Order on WhatsApp</a>
+  <a class="btn btn-ghost" href="#visit">Visit us</a>
+</nav>
+
+<!-- Cake / hamper order sheet -->
+<dialog class="sheet" aria-labelledby="sheet-title" data-sheet>
+  <form class="sheet-form" data-slip novalidate>
+    <div class="sheet-head">
+      <h2 id="sheet-title">Plan a cake</h2>
+      <button class="icon-btn" type="button" data-close-sheet aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+    <fieldset class="field">
+      <legend class="label">What are you ordering?</legend>
+      <div class="choices">
+        <label><input type="radio" name="kind" value="a custom cake" checked><span>Custom cake</span></label>
+        <label><input type="radio" name="kind" value="a gift hamper"><span>Gift hamper</span></label>
+        <label><input type="radio" name="kind" value="a dessert box"><span>Dessert box</span></label>
+      </div>
+    </fieldset>
+    <div class="field">
+      <label class="label" for="f-occasion">Occasion</label>
+      <input id="f-occasion" type="text" name="occasion" autocomplete="off" aria-describedby="f-occasion-help">
+      <p class="help" id="f-occasion-help">Birthday, anniversary, office party…</p>
+    </div>
+    <div class="field">
+      <label class="label" for="f-date">Needed on</label>
+      <input id="f-date" type="date" name="date" data-date>
+    </div>
+    <div class="field">
+      <label class="label" for="f-notes">Details</label>
+      <textarea id="f-notes" name="notes" rows="3" aria-describedby="f-notes-help"></textarea>
+      <p class="help" id="f-notes-help">Theme, flavour, number of people, message on the cake.</p>
+    </div>
+    <p class="error" data-slip-error role="alert" hidden></p>
+    <button class="btn btn-accent btn-wide" type="submit"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Send on WhatsApp</button>
+    <p class="help">This opens WhatsApp with your message filled in. Nothing is stored on this site.</p>
+  </form>
+</dialog>
 
 <script src="script.js" defer></script>
 </body>

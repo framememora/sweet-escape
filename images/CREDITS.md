@@ -1,20 +1,20 @@
 # Photo credits
 
-These are stand-in photos from Wikimedia Commons, used until The Sweet Escape sends its own photos. Each one is used under the license listed. When you replace a photo with your own, delete its line here.
+Stand-in photos from [Unsplash](https://unsplash.com), used under the [Unsplash License](https://unsplash.com/license) (free to use, no attribution required; credited anyway). Replace them with The Sweet Escape's own photos using the same filenames.
 
-| File | Photo | Author | License |
-|---|---|---|---|
-| `hero.jpg` | [Chocolate truffles 2.jpg](https://commons.wikimedia.org/wiki/File:Chocolate_truffles_2.jpg) | Off-shell | CC BY-SA 4.0 |
-| `truffles.jpg` | [Truffles with nuts and chocolate dusting in detail.jpg](https://commons.wikimedia.org/wiki/File:Truffles_with_nuts_and_chocolate_dusting_in_detail.jpg) | David Leggett | CC BY 2.0 |
-| `fudge.jpg` | [Vegan Chocolate Fudge.jpg](https://commons.wikimedia.org/wiki/File:Vegan_Chocolate_Fudge.jpg) | Veganbaking.net | CC BY-SA 2.0 |
-| `brownie.jpg` | [Brownie IMG 001.jpg](https://commons.wikimedia.org/wiki/File:Brownie_IMG_001.jpg) | Phadke09 | CC BY-SA 4.0 |
-| `gelato.jpg` | [Ice cream in the sun..jpg](https://commons.wikimedia.org/wiki/File:Ice_cream_in_the_sun..jpg) | Jeremy Keith | CC BY 2.0 |
-| `mousse.jpg` | [Chocolate mousse - stonesoup.jpg](https://commons.wikimedia.org/wiki/File:Chocolate_mousse_-_stonesoup.jpg) | jules / stonesoup | CC BY 2.0 |
-| `chocolate-cake.jpg` | [Chocolate mousse cake 2.jpg](https://commons.wikimedia.org/wiki/File:Chocolate_mousse_cake_2.jpg) | Lionel Allorge | CC BY-SA 3.0 |
-| `chiffon.jpg` | [Colourful chiffon cake 2.jpg](https://commons.wikimedia.org/wiki/File:Colourful_chiffon_cake_2.jpg) | Roozitaa | CC BY-SA 4.0 |
-| `waffle.jpg` | [Chocolate Waffle with Ice Cream.jpg](https://commons.wikimedia.org/wiki/File:Chocolate_Waffle_with_Ice_Cream.jpg) | Dhanushya ravikumar | CC BY 4.0 |
-| `tart.jpg` | [Birthday fruit tart for Tim.jpg](https://commons.wikimedia.org/wiki/File:Birthday_fruit_tart_for_Tim.jpg) | jenny cu | CC BY 2.0 |
-| `pie.jpg` | [Pie day apple pie slice.jpg](https://commons.wikimedia.org/wiki/File:Pie_day_apple_pie_slice.jpg) | Shisma | CC BY 4.0 |
-| `custom-cake.jpg` | [Birthday Cake (decorated).jpg](https://commons.wikimedia.org/wiki/File:Birthday_Cake_(decorated).jpg) | Horacio Cambeiro | CC BY 3.0 |
-| `hamper.jpg` | [Mary's chocates gift box, made in Japan.jpg](https://commons.wikimedia.org/wiki/File:Mary%27s_chocates_gift_box,_made_in_Japan.jpg) | Bernd from Yokohama, Japan | CC BY-SA 2.0 |
-| `custom-cake-2.jpg` | [Pink decorated wedding cake tiered.jpg](https://commons.wikimedia.org/wiki/File:Pink_decorated_wedding_cake_tiered.jpg) | Photo by and (c)2007 Jina Lee | CC BY-SA 3.0 |
+| File | Photographer | Source |
+|---|---|---|
+| `hero.jpg` | Jordane Mathieu | https://images.unsplash.com/photo-1541783245831-57d6fb0926d3 |
+| `truffles.jpg` | amirali mirhashemian | https://images.unsplash.com/photo-1582493255270-b3844e2a63c8 |
+| `fudge.jpg` | Nature Zen | https://images.unsplash.com/photo-1622484212850-eb596d769edc |
+| `brownie.jpg` | Pushpak Dsilva | https://images.unsplash.com/photo-1606313564200-e75d5e30476c |
+| `gelato.jpg` | hai_gea | https://images.unsplash.com/photo-1648971413826-8377e3c65039 |
+| `mousse.jpg` | ABHISHEK HAJARE | https://images.unsplash.com/photo-1603032305813-be7441bc1037 |
+| `chocolate-cake.jpg` | Pranjall Kumar | https://images.unsplash.com/photo-1615796701805-2094ac54bbf9 |
+| `chiffon.jpg` | Keriliwi | https://images.unsplash.com/photo-1675227977042-a572dac762be |
+| `waffle.jpg` | Kobby Mendez | https://images.unsplash.com/photo-1613483515012-8879be29b578 |
+| `tart.jpg` | Caramel | https://images.unsplash.com/photo-1670819916757-e8d5935a6c65 |
+| `pie.jpg` | Diliara Garifullina | https://images.unsplash.com/photo-1568571780765-9276ac8b75a2 |
+| `custom-cake.jpg` | Jacob Thomas | https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62 |
+| `hamper.jpg` | Igor Lifar | https://images.unsplash.com/photo-1548741487-18d363dc4469 |
+| `custom-cake-2.jpg` | Tuva Mathilde Løland | https://images.unsplash.com/photo-1559553156-2e97137af16f |

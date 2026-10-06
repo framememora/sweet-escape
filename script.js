@@ -15,18 +15,15 @@ document.querySelectorAll("[data-wa]").forEach((a) => {
   a.rel = "noopener";
 });
 
-// Mobile nav
-const toggle = document.querySelector(".nav-toggle");
-const nav = document.getElementById("nav");
-if (toggle && nav) {
-  const setOpen = (open) => {
-    nav.classList.toggle("is-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.querySelector(".nav-toggle-label").textContent = open ? "Close" : "Menu";
-  };
-  toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
-  nav.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+// Header turns solid once the hero is out of view
+const topBar = document.querySelector("[data-top]");
+const hero = document.querySelector("[data-hero]");
+if (topBar && hero && "IntersectionObserver" in window) {
+  new IntersectionObserver(([entry]) => {
+    topBar.classList.toggle("is-solid", !entry.isIntersecting);
+  }, { rootMargin: "-64px 0px 0px 0px" }).observe(hero);
+} else if (topBar) {
+  topBar.classList.add("is-solid");
 }
 
 // Open / closed, in Kochi time
@@ -38,29 +35,27 @@ function kochiNow() {
   return { h: get("hour"), m: get("minute") };
 }
 function updateStatus() {
-  const { h } = kochiNow();
+  const { h, m } = kochiNow();
   const open = h >= OPEN_HOUR && h < CLOSE_HOUR;
+  const minsLeft = (CLOSE_HOUR - h) * 60 - m;
   const status = document.querySelector("[data-status]");
   const text = document.querySelector("[data-status-text]");
-  const minsLeft = (CLOSE_HOUR - h) * 60 - kochiNow().m;
-  let msg;
-  if (open) msg = minsLeft <= 60 ? `Open now, closing at midnight` : `Open now till midnight`;
-  else msg = `Closed now. Opens at 2 PM`;
-  if (status) {
+  if (status && text) {
     status.classList.toggle("is-open", open);
     status.classList.toggle("is-closed", !open);
-    text.textContent = `${msg} · Thoppumpady`;
+    text.textContent = open ? (minsLeft <= 60 ? "Closing soon" : "Open now") : "Opens 2 PM";
   }
   const branch = document.querySelector('[data-branch-status="thoppumpady"]');
   if (branch) {
-    branch.textContent = open ? "Open" : "Closed, opens at 2 PM";
-    branch.className = open ? "is-open-text" : "is-closed-text";
+    branch.textContent = open ? "Open now, till midnight" : "Closed now. Opens at 2 PM";
+    branch.classList.toggle("is-open-text", open);
+    branch.classList.toggle("is-closed-text", !open);
   }
 }
 updateStatus();
 setInterval(updateStatus, 60_000);
 
-// Photos: skeleton until loaded, labelled slot if the file isn't there yet
+// Photos: skeleton until loaded
 document.querySelectorAll("[data-photo]").forEach((box) => {
   const img = box.querySelector("img");
   if (!img) return;
@@ -74,34 +69,72 @@ document.querySelectorAll("[data-photo]").forEach((box) => {
   }
 });
 
-// Menu filter
-const filters = document.querySelectorAll("[data-filter]");
-const segments = document.querySelectorAll(".segment");
-const empty = document.querySelector("[data-empty]");
-filters.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const cat = btn.dataset.filter;
-    filters.forEach((b) => {
-      const on = b === btn;
-      b.classList.toggle("is-on", on);
-      b.setAttribute("aria-pressed", String(on));
-    });
-    let shown = 0;
-    segments.forEach((s) => {
-      const show = cat === "all" || s.dataset.cat === cat;
-      s.classList.toggle("is-hidden", !show);
-      s.classList.remove("is-entering");
-      if (show) {
-        shown++;
-        void s.offsetWidth; // restart the snap-in
-        s.classList.add("is-entering");
+// Menu chips follow the shelf in view
+const chips = [...document.querySelectorAll("[data-chip]")];
+const chipBar = document.querySelector("[data-chips]");
+function setChip(id) {
+  chips.forEach((c) => {
+    const on = c.dataset.chip === id;
+    c.classList.toggle("is-on", on);
+    if (on) {
+      c.setAttribute("aria-current", "true");
+      if (chipBar) {
+        const left = c.offsetLeft - chipBar.clientWidth / 2 + c.clientWidth / 2;
+        chipBar.scrollTo({ left, behavior: "smooth" });
       }
-    });
-    if (empty) empty.hidden = shown > 0;
+    } else {
+      c.removeAttribute("aria-current");
+    }
+  });
+}
+if ("IntersectionObserver" in window) {
+  const shelfObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) setChip(e.target.id); });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll("[data-shelf]").forEach((s) => shelfObserver.observe(s));
+}
+
+// Branch tabs
+const tabs = [...document.querySelectorAll("[data-tab]")];
+function selectTab(tab, focus) {
+  tabs.forEach((t) => {
+    const on = t === tab;
+    t.classList.toggle("is-on", on);
+    t.setAttribute("aria-selected", String(on));
+    t.tabIndex = on ? 0 : -1;
+    const panel = document.getElementById(t.getAttribute("aria-controls"));
+    if (!panel) return;
+    panel.hidden = !on;
+    if (on) {
+      const frame = panel.querySelector("iframe[data-src]");
+      if (frame) { frame.src = frame.dataset.src; frame.removeAttribute("data-src"); }
+    }
+  });
+  if (focus) tab.focus();
+}
+tabs.forEach((tab, i) => {
+  tab.addEventListener("click", () => selectTab(tab));
+  tab.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+    selectTab(next, true);
   });
 });
 
-// Order slip → WhatsApp
+// Cake / hamper sheet
+const sheet = document.querySelector("[data-sheet]");
+document.querySelectorAll("[data-open-sheet]").forEach((b) =>
+  b.addEventListener("click", () => sheet && sheet.showModal())
+);
+document.querySelectorAll("[data-close-sheet]").forEach((b) =>
+  b.addEventListener("click", () => sheet && sheet.close())
+);
+if (sheet) {
+  // tap on the backdrop closes the sheet
+  sheet.addEventListener("click", (e) => { if (e.target === sheet) sheet.close(); });
+}
+
+// Order form → WhatsApp
 const slip = document.querySelector("[data-slip]");
 if (slip) {
   const dateInput = slip.querySelector("[data-date]");
@@ -130,33 +163,6 @@ if (slip) {
     if (data.get("notes")) lines.push(`Details: ${data.get("notes").trim()}`);
     window.open(waLink(lines.join("\n")), "_blank", "noopener");
   });
-}
-
-// Guilloche rosette for the seal
-const rosette = document.querySelector("[data-guilloche]");
-if (rosette) {
-  const NS = "http://www.w3.org/2000/svg";
-  const ring = (R, amp, lobes, phase) => {
-    let d = "";
-    for (let i = 0; i <= 360; i++) {
-      const t = (i / 360) * Math.PI * 2;
-      const r = R + amp * Math.cos(lobes * t + phase);
-      const x = 100 + r * Math.cos(t);
-      const y = 100 + r * Math.sin(t);
-      d += (i ? "L" : "M") + x.toFixed(2) + " " + y.toFixed(2);
-    }
-    return d + "Z";
-  };
-  for (let k = 0; k < 24; k++) {
-    const p = document.createElementNS(NS, "path");
-    p.setAttribute("d", ring(86, 9, 24, (k / 24) * Math.PI * 2 / 24));
-    rosette.appendChild(p);
-  }
-  for (let k = 0; k < 16; k++) {
-    const p = document.createElementNS(NS, "path");
-    p.setAttribute("d", ring(66, 6, 16, (k / 16) * Math.PI * 2 / 16));
-    rosette.appendChild(p);
-  }
 }
 
 // Year
