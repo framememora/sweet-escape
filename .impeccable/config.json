@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-10-06T18:50:02.510Z",
         "reason": "Claude triage 2026-10-07: tab underline sits flush on the tab bar border by design; sheet dialog has 24px bottom padding (verified in Chrome), detector measures it while closed"
+      },
+      {
+        "rule": "single-font",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-06T18:52:09.500Z",
+        "reason": "Claude triage 2026-10-07: Archivo variable font carries hierarchy via width (wdth 115 vs 100), weight (850 vs 400) and size; the rule's own exception"
       }
     ]
   }
