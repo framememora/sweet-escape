@@ -6,7 +6,7 @@
   --text: #f3f1ec;
   --muted: #b3ada4;
   --accent: #c42840;       /* cherry, the one accent */
-  --accent-hi: #d63a52;
+  --accent-hi: #a82138;     /* hover: darker, keeps text contrast above 6:1 */
   --open: #6cc98a;          /* semantic: open now */
   --closed: #e58a7a;        /* semantic: closed */
 
@@ -139,9 +139,9 @@ ul { list-style: none; margin: 0; padding: 0; }
   background-size: 250% 100%;
   animation: shimmer 1.3s linear infinite;
 }
-.photo img { opacity: 0; transition: opacity .5s var(--ease); }
+.js .photo img { opacity: 0; transition: opacity .5s var(--ease); }  /* hidden only when JS can reveal it */
 .photo.is-loaded::before { display: none; }
-.photo.is-loaded img { opacity: 1; }
+.js .photo.is-loaded img, .photo.is-missing img { opacity: 1; }
 .photo.is-missing::before { animation: none; }
 @keyframes shimmer { from { background-position: 150% 0; } to { background-position: -100% 0; } }
 
@@ -208,7 +208,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .tab {
   flex: 1;
   min-height: 3rem;
-  font: 650 1rem var(--font); color: var(--muted);
+  font: 650 1rem/1.5 var(--font); color: var(--muted);
   background: none; border: 0; border-bottom: 2px solid transparent;
   margin-bottom: -1px; cursor: pointer;
 }
@@ -257,7 +257,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* ---------- order sheet ---------- */
 .sheet {
   width: 100%; max-width: 100%; max-height: 92svh;
-  margin: auto 0 0; padding: 0;
+  margin: auto 0 0; padding: 1.25rem var(--gutter) calc(1.5rem + env(safe-area-inset-bottom));
   border: 0; border-top: 1px solid var(--line); border-radius: 0;
   background: var(--bg-2); color: var(--text);
   overflow-y: auto; overscroll-behavior: contain;
@@ -265,7 +265,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .sheet::backdrop { background: rgba(10, 10, 9, .7); }
 .sheet[open] { animation: sheet-up .45s var(--ease); }
 @keyframes sheet-up { from { transform: translateY(100%); } to { transform: none; } }
-.sheet-form { display: grid; gap: 1.25rem; padding: 1.25rem var(--gutter) calc(1.5rem + env(safe-area-inset-bottom)); }
+.sheet-form { display: grid; gap: 1.25rem; }
 .sheet-head { display: flex; align-items: center; justify-content: space-between; }
 .sheet-head h2 { font-size: 1.6rem; font-weight: 800; font-variation-settings: "wdth" 110; letter-spacing: -.02em; }
 .icon-btn {
@@ -277,7 +277,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .help { color: var(--muted); font-size: .875rem; }
 .field input, .field textarea {
   width: 100%; min-height: 3rem; padding: .75rem .85rem;
-  font: 400 1rem var(--font); color: var(--text);
+  font: 400 1rem/1.5 var(--font); color: var(--text);
   background: var(--bg); border: 1px solid rgba(243, 241, 236, .3); border-radius: 0;
   color-scheme: dark;
 }
