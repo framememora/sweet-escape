@@ -10,15 +10,6 @@
         "reason": "user confirmed: client asked to match the Webild coffee-shop reference fonts (Inter body), 2026-10-07"
       },
       {
-        "rule": "cream-palette",
-        "value": "*",
-        "files": [
-          "*.html"
-        ],
-        "createdAt": "2026-10-07T10:10:37.041Z",
-        "reason": "user confirmed: client asked to match the Webild coffee-shop reference colour pattern (cream #F5F0E8 + coffee #2C1810), 2026-10-07"
-      },
-      {
         "rule": "gpt-thin-border-wide-shadow",
         "value": "*",
         "files": [
