@@ -7,7 +7,7 @@
         "rule": "overused-font",
         "value": "inter",
         "createdAt": "2026-10-07T10:10:36.750Z",
-        "reason": "user confirmed: client asked to match the Webild coffee-shop reference fonts (Inter body + Messy Handwritten display), 2026-10-07"
+        "reason": "user confirmed: client asked to match the Webild coffee-shop reference fonts (Inter body), 2026-10-07"
       },
       {
         "rule": "cream-palette",
@@ -44,6 +44,15 @@
         ],
         "createdAt": "2026-10-07T10:10:38.015Z",
         "reason": "Claude triage 2026-10-07: flagged children are photos filling their rounded frame by design; text labels are inset 7-9px inside a 2.4rem pill"
+      },
+      {
+        "rule": "single-font",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-07T10:14:28.946Z",
+        "reason": "Claude triage 2026-10-07: false positive; page uses two families, Messy Handwritten (@font-face in styles.css, preloaded) for display and Inter for body; the static scan only sees the Google Fonts link"
       }
     ]
   }
