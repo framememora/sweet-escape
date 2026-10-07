@@ -53,6 +53,15 @@
         ],
         "createdAt": "2026-10-07T10:14:28.946Z",
         "reason": "Claude triage 2026-10-07: false positive; page uses two families, Messy Handwritten (@font-face in styles.css, preloaded) for display and Inter for body; the static scan only sees the Google Fonts link"
+      },
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-07T10:26:25.002Z",
+        "reason": "user confirmed: client asked to match the Webild coffee-shop reference fonts (Inter body). Font-specific ignore cannot match because this hook version extracts no value from 'Google Fonts: inter', 2026-10-07"
       }
     ]
   }
