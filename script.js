@@ -5,25 +5,45 @@ const WHATSAPP_NUMBER = "919000000000"; // PLACEHOLDER
 const OPEN_HOUR = 14;  // 2 PM, India time
 const CLOSE_HOUR = 24; // midnight
 
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const waLink = (text) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
-// WhatsApp links
+// WhatsApp + phone links
 document.querySelectorAll("[data-wa]").forEach((a) => {
   a.href = waLink(a.dataset.wa);
   a.target = "_blank";
   a.rel = "noopener";
 });
+document.querySelectorAll("[data-tel]").forEach((a) => { a.href = `tel:+${WHATSAPP_NUMBER}`; });
 
-// Header turns solid once the hero is out of view
-const topBar = document.querySelector("[data-top]");
-const hero = document.querySelector("[data-hero]");
-if (topBar && hero && "IntersectionObserver" in window) {
-  new IntersectionObserver(([entry]) => {
-    topBar.classList.toggle("is-solid", !entry.isIntersecting);
-  }, { rootMargin: "-64px 0px 0px 0px" }).observe(hero);
-} else if (topBar) {
-  topBar.classList.add("is-solid");
+// Nav gets a backdrop once the page scrolls
+const nav = document.querySelector("[data-nav]");
+const hero = document.querySelector(".hero");
+if (nav && hero && "IntersectionObserver" in window) {
+  const sentinel = document.createElement("div");
+  sentinel.style.cssText = "position:absolute;top:0;height:40px;width:1px;pointer-events:none";
+  hero.prepend(sentinel);
+  new IntersectionObserver(([e]) => nav.classList.toggle("is-scrolled", !e.isIntersecting)).observe(sentinel);
+}
+
+// Menu panel
+const menuBtn = document.querySelector("[data-menu-btn]");
+const menuPanel = document.querySelector("[data-menu-panel]");
+function setMenu(open) {
+  if (!menuBtn || !menuPanel) return;
+  menuPanel.hidden = !open;
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  menuBtn.querySelector("i").className = open ? "ph ph-x" : "ph ph-list";
+}
+if (menuBtn && menuPanel) {
+  menuBtn.addEventListener("click", () => setMenu(menuPanel.hidden));
+  menuPanel.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("click", (e) => {
+    if (!menuPanel.hidden && !e.target.closest("[data-menu-panel],[data-menu-btn]")) setMenu(false);
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 }
 
 // Open / closed, in Kochi time
@@ -43,11 +63,13 @@ function updateStatus() {
   if (status && text) {
     status.classList.toggle("is-open", open);
     status.classList.toggle("is-closed", !open);
-    text.textContent = open ? (minsLeft <= 60 ? "Closing soon" : "Open now") : "Opens 2 PM";
+    text.textContent = open
+      ? (minsLeft <= 60 ? "Open now, closing at midnight" : "Open now, till midnight")
+      : "Closed now, opens at 2 PM";
   }
   const branch = document.querySelector('[data-branch-status="thoppumpady"]');
   if (branch) {
-    branch.textContent = open ? "Open now, till midnight" : "Closed now. Opens at 2 PM";
+    branch.textContent = open ? "Open now, till midnight" : "Closed now, opens at 2 PM";
     branch.classList.toggle("is-open-text", open);
     branch.classList.toggle("is-closed-text", !open);
   }
@@ -69,59 +91,78 @@ document.querySelectorAll("[data-photo]").forEach((box) => {
   }
 });
 
-// Menu chips follow the shelf in view
-const chips = [...document.querySelectorAll("[data-chip]")];
-const chipBar = document.querySelector("[data-chips]");
-function setChip(id) {
-  chips.forEach((c) => {
-    const on = c.dataset.chip === id;
-    c.classList.toggle("is-on", on);
-    if (on) {
-      c.setAttribute("aria-current", "true");
-      if (chipBar) {
-        const left = c.offsetLeft - chipBar.clientWidth / 2 + c.clientWidth / 2;
-        chipBar.scrollTo({ left, behavior: "smooth" });
+// Menu filter
+const chips = [...document.querySelectorAll("[data-filter]")];
+const items = [...document.querySelectorAll("[data-grid] li")];
+chips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const cat = chip.dataset.filter;
+    chips.forEach((c) => {
+      const on = c === chip;
+      c.classList.toggle("is-on", on);
+      c.setAttribute("aria-pressed", String(on));
+    });
+    items.forEach((li) => {
+      const show = cat === "all" || li.dataset.cat === cat;
+      li.hidden = !show;
+      if (show && !reduceMotion) {
+        li.animate([{ opacity: 0, transform: "translateY(10px)" }, { opacity: 1, transform: "none" }],
+          { duration: 380, easing: "cubic-bezier(.16,1,.3,1)" });
       }
-    } else {
-      c.removeAttribute("aria-current");
-    }
-  });
-}
-if ("IntersectionObserver" in window) {
-  const shelfObserver = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) setChip(e.target.id); });
-  }, { rootMargin: "-45% 0px -50% 0px" });
-  document.querySelectorAll("[data-shelf]").forEach((s) => shelfObserver.observe(s));
-}
-
-// Branch tabs
-const tabs = [...document.querySelectorAll("[data-tab]")];
-function selectTab(tab, focus) {
-  tabs.forEach((t) => {
-    const on = t === tab;
-    t.classList.toggle("is-on", on);
-    t.setAttribute("aria-selected", String(on));
-    t.tabIndex = on ? 0 : -1;
-    const panel = document.getElementById(t.getAttribute("aria-controls"));
-    if (!panel) return;
-    panel.hidden = !on;
-    if (on) {
-      const frame = panel.querySelector("iframe[data-src]");
-      if (frame) { frame.src = frame.dataset.src; frame.removeAttribute("data-src"); }
-    }
-  });
-  if (focus) tab.focus();
-}
-tabs.forEach((tab, i) => {
-  tab.addEventListener("click", () => selectTab(tab));
-  tab.addEventListener("keydown", (e) => {
-    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-    const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
-    selectTab(next, true);
+    });
   });
 });
 
-// Cake / hamper sheet
+// Reveal sections as they arrive
+const reveals = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window && !reduceMotion) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -10% 0px" });
+  reveals.forEach((el) => io.observe(el));
+} else {
+  reveals.forEach((el) => el.classList.add("is-in"));
+}
+
+// "What are you in the mood for?": dessert photos trail the cursor or finger
+const trail = document.querySelector("[data-trail]");
+if (trail && !reduceMotion) {
+  const srcs = ["truffles", "gelato", "brownie", "waffle", "tart", "mousse", "custom-cake", "fudge", "chocolate-cake", "pie"]
+    .map((n) => `images/${n}.jpg`);
+  srcs.forEach((s) => { const i = new Image(); i.src = s; });
+  let last = null;
+  let n = 0;
+  const spawn = (clientX, clientY) => {
+    const r = trail.getBoundingClientRect();
+    const x = clientX - r.left;
+    const y = clientY - r.top;
+    if (last && Math.hypot(x - last.x, y - last.y) < 80) return;
+    last = { x, y };
+    const img = document.createElement("img");
+    img.className = "trail-img";
+    img.src = srcs[n++ % srcs.length];
+    img.alt = "";
+    trail.appendChild(img);
+    const w = img.offsetWidth || 120;
+    const h = w * 1.25;
+    img.style.left = `${x - w / 2}px`;
+    img.style.top = `${y - h / 2}px`;
+    const rot = (Math.random() * 16 - 8).toFixed(1);
+    img.animate([
+      { opacity: 0, transform: `scale(.6) rotate(${rot}deg)` },
+      { opacity: 1, transform: `scale(1) rotate(${rot}deg)`, offset: .2 },
+      { opacity: 1, transform: `scale(1) rotate(${rot}deg)`, offset: .7 },
+      { opacity: 0, transform: `scale(.85) rotate(${rot}deg)` },
+    ], { duration: 1400, easing: "cubic-bezier(.16,1,.3,1)" }).onfinish = () => img.remove();
+  };
+  trail.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") spawn(e.clientX, e.clientY); });
+  trail.addEventListener("touchmove", (e) => { const t = e.touches[0]; if (t) spawn(t.clientX, t.clientY); }, { passive: true });
+  trail.addEventListener("touchstart", (e) => { const t = e.touches[0]; if (t) { last = null; spawn(t.clientX, t.clientY); } }, { passive: true });
+}
+
+// Order sheet
 const sheet = document.querySelector("[data-sheet]");
 document.querySelectorAll("[data-open-sheet]").forEach((b) =>
   b.addEventListener("click", () => sheet && sheet.showModal())
@@ -130,7 +171,6 @@ document.querySelectorAll("[data-close-sheet]").forEach((b) =>
   b.addEventListener("click", () => sheet && sheet.close())
 );
 if (sheet) {
-  // tap on the backdrop closes the sheet
   sheet.addEventListener("click", (e) => { if (e.target === sheet) sheet.close(); });
 }
 

@@ -18,3 +18,9 @@ Stand-in photos from [Unsplash](https://unsplash.com), used under the [Unsplash 
 | `custom-cake.jpg` | Jacob Thomas | https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62 |
 | `hamper.jpg` | Igor Lifar | https://images.unsplash.com/photo-1548741487-18d363dc4469 |
 | `custom-cake-2.jpg` | Tuva Mathilde Løland | https://images.unsplash.com/photo-1559553156-2e97137af16f |
+| `hero-wide.jpg` | Tamas Pap | https://images.unsplash.com/photo-1604514813560-1e4f5726db65 |
+
+## Fonts
+
+- **Messy Handwritten** by Nur Aisyah Amalia, under the [1001Fonts Free For Commercial Use license](https://www.1001fonts.com/messy-handwritten-font.html). Self-hosted in `fonts/`.
+- **Inter** by Rasmus Andersson, SIL Open Font License, loaded from Google Fonts.

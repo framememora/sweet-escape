@@ -4,22 +4,46 @@
     "ignoreFiles": [],
     "ignoreValues": [
       {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-07T10:10:36.750Z",
+        "reason": "user confirmed: client asked to match the Webild coffee-shop reference fonts (Inter body + Messy Handwritten display), 2026-10-07"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "*.html"
+        ],
+        "createdAt": "2026-10-07T10:10:37.041Z",
+        "reason": "user confirmed: client asked to match the Webild coffee-shop reference colour pattern (cream #F5F0E8 + coffee #2C1810), 2026-10-07"
+      },
+      {
+        "rule": "gpt-thin-border-wide-shadow",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-07T10:10:37.327Z",
+        "reason": "user confirmed: floating cards, photo trail and dark pills copy the Webild coffee-shop reference UI the client asked for, 2026-10-07"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-07T10:10:37.701Z",
+        "reason": "user confirmed: pill eyebrow inside the contact card is the reference layout the client asked for, 2026-10-07"
+      },
+      {
         "rule": "cramped-padding",
         "value": "*",
         "files": [
           "index.html"
         ],
-        "createdAt": "2026-10-06T18:50:02.510Z",
-        "reason": "Claude triage 2026-10-07: tab underline sits flush on the tab bar border by design; sheet dialog has 24px bottom padding (verified in Chrome), detector measures it while closed"
-      },
-      {
-        "rule": "single-font",
-        "value": "*",
-        "files": [
-          "index.html"
-        ],
-        "createdAt": "2026-10-06T18:52:09.500Z",
-        "reason": "Claude triage 2026-10-07: Archivo variable font carries hierarchy via width (wdth 115 vs 100), weight (850 vs 400) and size; the rule's own exception"
+        "createdAt": "2026-10-07T10:10:38.015Z",
+        "reason": "Claude triage 2026-10-07: flagged children are photos filling their rounded frame by design; text labels are inset 7-9px inside a 2.4rem pill"
       }
     ]
   }
